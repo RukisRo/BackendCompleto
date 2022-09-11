@@ -3,6 +3,7 @@ const models = require('../../models')
 const FileValidationHelper = require('./FileValidationHelper')
 
 const Product = models.Product
+const Restaurant = models.Restaurant
 
 const maxFileSize = 10000000 // around 10Mb
 

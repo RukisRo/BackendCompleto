@@ -269,7 +269,7 @@
     "method": "POST",
     "sortNum": 30000,
     "created": "2021-07-25T08:18:17.296Z",
-    "modified": "2022-09-11T08:58:12.764Z",
+    "modified": "2022-09-11T15:17:32.637Z",
     "headers": [],
     "params": [],
     "body": {
@@ -325,6 +325,10 @@
           "name": "enPromocion",
           "value": "true",
           "isDisabled": true
+        },
+        {
+          "name": "esVegano",
+          "value": "true"
         }
       ],
       "files": [
