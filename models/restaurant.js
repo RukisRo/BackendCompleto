@@ -50,6 +50,10 @@ module.exports = (sequelize, DataTypes) => {
         'temporarily closed'
       ]
     },
+    enPromocion: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
+    },
     restaurantCategoryId: {
       allowNull: false,
       type: DataTypes.INTEGER

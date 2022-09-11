@@ -10,13 +10,13 @@ exports.index = async function (req, res) {
   try {
     const restaurants = await Restaurant.findAll(
       {
-        attributes: ['id', 'name', 'description', 'address', 'postalCode', 'url', 'shippingCosts', 'averageServiceMinutes', 'email', 'phone', 'logo', 'heroImage', 'status', 'restaurantCategoryId'],
+        attributes: ['id', 'name', 'description', 'address', 'postalCode', 'url', 'shippingCosts', 'averageServiceMinutes', 'email', 'phone', 'logo', 'heroImage', 'status', 'enPromocion', 'restaurantCategoryId'],
         include:
       {
         model: RestaurantCategory,
         as: 'restaurantCategory'
       },
-        order: [[{ model: RestaurantCategory, as: 'restaurantCategory' }, 'name', 'ASC']]
+        order: [['enPromocion', 'DESC'], [{ model: RestaurantCategory, as: 'restaurantCategory' }, 'name', 'ASC']]
       }
     )
     res.json(restaurants)
@@ -29,8 +29,9 @@ exports.indexOwner = async function (req, res) {
   try {
     const restaurants = await Restaurant.findAll(
       {
-        attributes: ['id', 'name', 'description', 'address', 'postalCode', 'url', 'shippingCosts', 'averageServiceMinutes', 'email', 'phone', 'logo', 'heroImage', 'status', 'restaurantCategoryId'],
-        where: { userId: req.user.id }
+        attributes: ['id', 'name', 'description', 'address', 'postalCode', 'url', 'shippingCosts', 'averageServiceMinutes', 'email', 'phone', 'logo', 'heroImage', 'status', 'enPromocion', 'restaurantCategoryId'],
+        where: { userId: req.user.id },
+        order: [['enPromocion', 'DESC']]
       })
     res.json(restaurants)
   } catch (err) {

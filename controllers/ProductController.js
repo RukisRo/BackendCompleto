@@ -27,6 +27,7 @@ exports.create = async function (req, res) {
     res.status(422).send(err)
   } else {
     let newProduct = Product.build(req.body)
+    newProduct.calories = newProduct.fats * 9 + newProduct.proteins * 4 + newProduct.carbohydrates * 4
     if (typeof req.file !== 'undefined') {
       newProduct.image = req.file.path
     }
@@ -51,6 +52,9 @@ exports.update = async function (req, res) {
     if (typeof req.file !== 'undefined') {
       req.body.image = req.file.path
     }
+
+    req.body.calories = req.body.fats * 9 + req.body.proteins * 4 + req.body.carbohydrates * 4
+
     try {
       await Product.update(req.body, { where: { id: req.params.productId } })
       const updatedProduct = await Product.findByPk(req.params.productId)
@@ -88,7 +92,10 @@ exports.popular = async function (req, res) {
         {
           model: Restaurant,
           as: 'restaurant',
-          attributes: ['id', 'name', 'description', 'address', 'postalCode', 'url', 'shippingCosts', 'averageServiceMinutes', 'email', 'phone', 'logo', 'heroImage', 'status', 'restaurantCategoryId'],
+          attributes: ['id', 'name', 'description', 'address', 'postalCode', 'url',
+            'shippingCosts', 'averageServiceMinutes', 'email', 'phone', 'logo', 'heroImage',
+            'status', 'fats', 'proteins', 'carbohydrates', 'calories', 'enPromocion',
+            'restaurantCategoryId'],
           include:
         {
           model: RestaurantCategory,

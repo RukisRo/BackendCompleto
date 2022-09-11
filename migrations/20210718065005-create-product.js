@@ -28,6 +28,26 @@ module.exports = {
       availability: {
         type: Sequelize.BOOLEAN
       },
+      fats: {
+        allowNull: true,
+        type: Sequelize.DOUBLE
+      },
+      proteins: {
+        allowNull: true,
+        type: Sequelize.DOUBLE
+      },
+      carbohydrates: {
+        allowNull: true,
+        type: Sequelize.DOUBLE
+      },
+      calories: {
+        allowNull: true,
+        type: Sequelize.DOUBLE
+      },
+      enPromocion: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
+      },
       restaurantId: {
         type: Sequelize.INTEGER,
         references: {
